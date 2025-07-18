@@ -1,57 +1,57 @@
 <template>
-  <header class="text-gray-600 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      
+  <header class="body-font fixed top-0 z-50 w-full bg-white text-gray-600 shadow">
+    <div class="container mx-auto flex flex-col flex-wrap items-center p-5 px-10 md:flex-row">
       <!-- Logo -->
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="#">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-          viewBox="0 0 24 24"
+      <a class="title-font mb-4 flex items-center font-medium text-gray-900 md:mb-0" href="#">
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-xl font-bold text-white"
         >
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-        </svg>
-        <span class="ml-3 text-xl">My Portfolio</span>
+          BT
+        </div>
+        <span class="ml-3 text-xl">{{ t.portfolioTitle }}</span>
       </a>
 
       <!-- Navigation -->
-      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-gray-900" href="#">First Link</a>
-        <a class="mr-5 hover:text-gray-900" href="#">Second Link</a>
-        <a class="mr-5 hover:text-gray-900" href="#">Third Link</a>
-        <a class="mr-5 hover:text-gray-900" href="#">Fourth Link</a>
-      </nav>
-
-      <!-- CTA Button -->
-      <button
-        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-      >
-        Button
-        <svg
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="w-4 h-4 ml-1"
-          viewBox="0 0 24 24"
+      <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+        <a class="mr-5 hover:text-gray-900" href="#about">{{ t.navAbout }}</a>
+        <a class="mr-5 hover:text-gray-900" href="#work">{{ t.navWork }}</a>
+        <a class="mr-5 hover:text-gray-900" href="#contact">{{ t.navContact }}</a>
+        <button
+          @click="downloadCV"
+          class="inline-flex rounded-lg border-0 bg-blue-500 px-6 py-2 text-lg text-white hover:bg-blue-600 focus:outline-none"
         >
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </button>
-
+          {{ t.btnResume }}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-download ml-4"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+            <path d="M7 11l5 5l5 -5" />
+            <path d="M12 4l0 12" />
+          </svg>
+        </button>
+      </nav>
       <!-- Langue toggle -->
-      <LanguageToggle class="ml-4" />
-
     </div>
+    <LanguageToggle class="absolute right-4 top-1/2 -translate-y-1/2" />
   </header>
 </template>
 
 <script setup>
-import LanguageToggle from './LanguageToggle.vue' // Import the LanguageToggle component
+  import LanguageToggle from './LanguageToggle.vue' // Import the LanguageToggle component
+  import { useTranslation } from '../composables/useTranslation'
+
+  const t = useTranslation()
+  const downloadCV = () => {
+    window.open('/Resume_Toussaint.pdf', '_blank')
+  }
 </script>
